@@ -19,6 +19,7 @@ class TransactionCubit extends Cubit<TransactionState> {
         error: '',
       ));
     } catch (e) {
+      print('Error in Cubit: $e');
       emit(state.copyWith(
         isLoading: false,
         error: e.toString(),

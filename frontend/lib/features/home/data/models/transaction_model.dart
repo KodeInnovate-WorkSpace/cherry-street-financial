@@ -3,16 +3,18 @@ import 'package:intl/intl.dart';
 
 class TransactionModel extends TransactionEntity {
   TransactionModel({
+    required super.month,
+    required super.day,
     required super.purchase,
     required super.cost,
-    required super.date,
   });
 
-  factory TransactionModel.fromJson(Map<String, dynamic> json) {
+  factory TransactionModel.fromJson(Map<String, dynamic> data) {
     return TransactionModel(
-      purchase: json['purchase'] as String,
-      cost: (json['cost'] as num).toDouble(),
-      date: DateFormat('yyyy-MM-dd').parse(json['transaction_date']),
+      month: data['month'] ?? '',
+      day: data['day'] ?? '',
+      purchase: data['purchase'] ?? '',
+      cost: data['cost'] is num ? data['cost'] : double.tryParse(data['cost'].toString()) ?? 0.0,
     );
   }
 }
@@ -31,12 +33,11 @@ class GroupedTransactionModel {
       return GroupedTransactionModel(month: "", transactionsByDate: {});
     }
 
-    final month = DateFormat('MMMM yyyy').format(transactions.first.date);
+    final month = transactions.first.month;
 
     final groupedByDate = <String, List<TransactionModel>>{};
     for (var transaction in transactions) {
-      final dateKey = DateFormat('MM/dd/yyyy').format(transaction.date);
-      groupedByDate.putIfAbsent(dateKey, () => []).add(transaction);
+      groupedByDate.putIfAbsent(transaction.day, () => []).add(transaction);
     }
 
     return GroupedTransactionModel(month: month, transactionsByDate: groupedByDate);

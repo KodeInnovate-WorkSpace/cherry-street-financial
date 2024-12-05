@@ -74,7 +74,6 @@ class PlanningCard extends StatelessWidget {
                               ],
                             ),
                           ),
-
                           const SizedBox(height: 10),
                           const CustomProgressBar(),
                           const SizedBox(height: 20),

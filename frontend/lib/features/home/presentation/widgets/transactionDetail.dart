@@ -2,8 +2,14 @@ import '../../../../constants/fonts.dart';
 import 'package:flutter/material.dart';
 
 class TransactionDetail extends StatelessWidget {
+  final String purchase;
+  final double cost;
+final String day;
   const TransactionDetail({
     super.key,
+    required this.purchase,
+    required this.cost,
+    required this.day,
   });
 
   @override
@@ -14,7 +20,7 @@ class TransactionDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "05/18/2022",
+            day,
             style: poppinsBold(
               size: 14,
             ),
@@ -25,35 +31,14 @@ class TransactionDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Starbucks",
+                  purchase, // Use the passed purchase name
                   style: poppinsMedium(
                     size: 14,
                     color: Colors.grey.shade700,
                   ),
                 ),
                 Text(
-                  "\$12.43",
-                  style: poppinsBold(
-                    size: 14,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Best Buy",
-                  style: poppinsMedium(
-                    size: 14,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-                Text(
-                  "\$12,054.77",
+                  "\$${cost.toStringAsFixed(2)}", // Format the cost dynamically
                   style: poppinsBold(
                     size: 14,
                   ),

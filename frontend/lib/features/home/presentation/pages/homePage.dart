@@ -3,7 +3,9 @@ import 'package:cherrystreet/features/home/presentation/widgets/homeTop.dart';
 import 'package:cherrystreet/constants/colors.dart';
 import 'package:cherrystreet/constants/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../state/transactionCubit.dart';
 import '../widgets/newsCard.dart';
 import '../widgets/planningCard.dart';
 import '../widgets/spendingCard.dart';
@@ -16,6 +18,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<TransactionCubit>().fetchTransactions();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
