@@ -26,27 +26,43 @@ class InputField extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.grey.shade300),
-          ),
-          child: TextFormField(
-            controller: controller,
-            obscureText: isPassword,
-            cursorColor: AppColors.primaryClr,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-              border: InputBorder.none,
-              hintText: 'Enter your ${label.toLowerCase()}',
-              hintStyle: const TextStyle(
-                fontFamily: 'PoppinsRegular',
-                fontSize: 12,
+        TextFormField(
+          controller: controller,
+          obscureText: isPassword,
+          cursorColor: AppColors.primaryClr,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+            hintText: 'Enter your ${label.toLowerCase()}',
+            hintStyle: const TextStyle(
+              fontFamily: 'PoppinsRegular',
+              fontSize: 12,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: Colors.grey.shade300,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: Colors.grey.shade300,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: AppColors.primaryClr,
               ),
             ),
           ),
-        ),
+          validator: (value) {
+            if (value!.isEmpty) return "Please enter ${label.toLowerCase()}";
+            return null;
+          },
+        )
       ],
     );
   }

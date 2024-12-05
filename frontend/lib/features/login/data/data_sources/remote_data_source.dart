@@ -11,7 +11,7 @@ class RemoteDataSource {
   Future<UserModel?> fetchUser(String username, String password) async {
     try {
       final res = await http.post(
-        Uri.parse("$baseUrl/login"),
+        Uri.parse("$baseUrl/auth/login"),
         headers: {
           'Content-Type': "application/json",
         },

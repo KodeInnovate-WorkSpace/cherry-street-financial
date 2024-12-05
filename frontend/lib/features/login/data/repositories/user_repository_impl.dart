@@ -1,8 +1,6 @@
-import 'dart:convert';
 
 import 'package:cherrystreet/features/login/data/data_sources/remote_data_source.dart';
 import 'package:cherrystreet/features/login/data/models/user_model.dart';
-import 'package:http/http.dart' as http;
 
 import '../../domain/repositories/user_repository.dart';
 
