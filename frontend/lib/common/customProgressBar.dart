@@ -17,7 +17,7 @@ class CustomProgressBar extends StatelessWidget {
           Positioned.fill(
             child: FractionallySizedBox(
               alignment: Alignment.centerLeft,
-              widthFactor: 1, // Adjust this value for the first color's percentage
+              widthFactor: 1, 
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -33,7 +33,7 @@ class CustomProgressBar extends StatelessWidget {
           Positioned.fill(
             child: FractionallySizedBox(
               alignment: Alignment.centerLeft,
-              widthFactor: 0.85, // Adjust this value for the second color's percentage
+              widthFactor: 0.85, 
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.green,

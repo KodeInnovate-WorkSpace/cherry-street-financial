@@ -1,5 +1,4 @@
 import 'package:cherrystreet/features/home/domain/entities/transaction_entity.dart';
-import 'package:intl/intl.dart';
 
 class TransactionModel extends TransactionEntity {
   TransactionModel({
@@ -9,37 +8,24 @@ class TransactionModel extends TransactionEntity {
     required super.cost,
   });
 
-  factory TransactionModel.fromJson(Map<String, dynamic> data) {
+  factory TransactionModel.fromJson(Map<String, dynamic> json) {
     return TransactionModel(
-      month: data['month'] ?? '',
-      day: data['day'] ?? '',
-      purchase: data['purchase'] ?? '',
-      cost: data['cost'] is num ? data['cost'] : double.tryParse(data['cost'].toString()) ?? 0.0,
+      month: json['month'] ?? 'Unknown Month',
+      day: json['day'] ?? 'Unknown Day',
+      purchase: json['purchase'] ?? 'Unknown Purchase',
+      cost: _parseCost(json['cost']),
     );
   }
-}
 
-class GroupedTransactionModel {
-  final String month;
-  final Map<String, List<TransactionModel>> transactionsByDate;
-
-  GroupedTransactionModel({
-    required this.month,
-    required this.transactionsByDate,
-  });
-
-  factory GroupedTransactionModel.fromTransactionModelList(List<TransactionModel> transactions) {
-    if (transactions.isEmpty) {
-      return GroupedTransactionModel(month: "", transactionsByDate: {});
+  
+  static double _parseCost(dynamic cost) {
+    if (cost is num) {
+      return cost.toDouble();
+    } else if (cost is String) {
+      
+      return double.tryParse(cost) ?? 0.0;
+    } else {
+      return 0.0; 
     }
-
-    final month = transactions.first.month;
-
-    final groupedByDate = <String, List<TransactionModel>>{};
-    for (var transaction in transactions) {
-      groupedByDate.putIfAbsent(transaction.day, () => []).add(transaction);
-    }
-
-    return GroupedTransactionModel(month: month, transactionsByDate: groupedByDate);
   }
 }

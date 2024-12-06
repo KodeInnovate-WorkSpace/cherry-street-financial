@@ -1,11 +1,7 @@
-import 'dart:developer';
-
-import 'package:cherrystreet/features/home/presentation/widgets/transactionDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-import '../../data/models/transaction_model.dart';
 import '../state/transactionCubit.dart';
 import '../state/transactionState.dart';
 
@@ -23,7 +19,7 @@ class SpendingCard extends StatelessWidget {
           return Center(child: Text(state.error));
         }
 
-        final groupedTransactions = GroupedTransactionModel.fromTransactionModelList(state.transactions);
+        final groupedTransactions = state.groupedTransactions;
 
         return Center(
           child: Container(
@@ -46,7 +42,7 @@ class SpendingCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (var entry in groupedTransactions.transactionsByDate.entries) ...[
+                    for (var groupedTransaction in groupedTransactions) ...[
                       RichText(
                         text: TextSpan(
                           text: "Transactions: ",
@@ -56,7 +52,7 @@ class SpendingCard extends StatelessWidget {
                           ),
                           children: [
                             TextSpan(
-                              text: groupedTransactions.month,
+                              text: groupedTransaction.month,
                               style: poppinsRegular(
                                 size: 16,
                                 color: AppColors.primaryClr,
@@ -79,13 +75,29 @@ class SpendingCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      for (var transaction in entry.value) ...[
-                        const SizedBox(height: 10),
-                        TransactionDetail(
-                          purchase: transaction.purchase,
-                          cost: transaction.cost,
-                          day: transaction.day,
+                      const SizedBox(height: 15),
+                      for (var entry in groupedTransaction.transactionsByDate.entries) ...[
+                        Text(
+                          entry.key,
+                          style: poppinsBold(size: 14),
                         ),
+                        const SizedBox(height: 5),
+                        for (var transaction in entry.value) ...[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                transaction.purchase,
+                                style: poppinsRegular(size: 14, color: Colors.grey.shade700),
+                              ),
+                              Text(
+                                "\$${transaction.cost}",
+                                style: poppinsBold(size: 14),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                        ],
                       ],
                       const SizedBox(height: 15),
                     ],

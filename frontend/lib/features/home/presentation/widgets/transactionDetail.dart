@@ -31,14 +31,14 @@ final String day;
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  purchase, // Use the passed purchase name
+                  purchase, 
                   style: poppinsMedium(
                     size: 14,
                     color: Colors.grey.shade700,
                   ),
                 ),
                 Text(
-                  "\$${cost.toStringAsFixed(2)}", // Format the cost dynamically
+                  "\$${cost.toStringAsFixed(2)}", 
                   style: poppinsBold(
                     size: 14,
                   ),

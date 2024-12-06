@@ -4,7 +4,6 @@ import 'package:cherrystreet/constants/colors.dart';
 import 'package:cherrystreet/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../state/transactionCubit.dart';
 import '../widgets/newsCard.dart';
 import '../widgets/planningCard.dart';
@@ -45,38 +44,44 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HomeTop(),
-                  TabBar(
-                    indicatorColor: Colors.transparent,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    indicatorPadding: EdgeInsets.zero,
-                    dividerColor: Colors.transparent,
-                    labelColor: AppColors.white,
-                    unselectedLabelColor: Colors.grey.shade200,
-                    labelStyle: poppinsBold(size: 15),
-                    unselectedLabelStyle: poppinsMedium(size: 15),
-                    overlayColor: WidgetStateProperty.all(Colors.transparent),
-                    tabs: const [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Tab(text: "Spending"),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Tab(text: "Planning"),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Tab(text: "News"),
-                      ),
-                    ],
-                  ),
-                  const Expanded(
-                    child: TabBarView(
-                      children: [
-                        SpendingCard(),
-                        PlanningCard(),
-                        NewsCard(),
+                  Transform.translate(
+                    offset: const Offset(-16, 0),
+                    child: TabBar(
+                      indicatorColor: Colors.transparent,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      indicatorPadding: EdgeInsets.zero,
+                      dividerColor: Colors.transparent,
+                      labelColor: AppColors.white,
+                      unselectedLabelColor: Colors.grey.shade200,
+                      labelStyle: poppinsBold(size: 15),
+                      unselectedLabelStyle: poppinsMedium(size: 15),
+                      overlayColor: WidgetStateProperty.all(Colors.transparent),
+                      tabs: const [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Tab(text: "Spending"),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Tab(text: "Planning"),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Tab(text: "News"),
+                        ),
                       ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Transform.translate(
+                      offset: const Offset(0, -16),
+                      child: const TabBarView(
+                        children: [
+                          SpendingCard(),
+                          PlanningCard(),
+                          NewsCard(),
+                        ],
+                      ),
                     ),
                   )
                 ],

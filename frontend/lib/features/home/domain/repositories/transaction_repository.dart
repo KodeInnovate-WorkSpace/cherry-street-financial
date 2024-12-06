@@ -1,5 +1,5 @@
-import 'package:cherrystreet/features/home/data/models/transaction_model.dart';
+import '../../data/models/groupedTransaction_model.dart';
 
 abstract interface class TransactionRepository {
-  Future<List<TransactionModel>> fetchTransaction();
+  Future<List<GroupedTransactionModel>> fetchTransactions() ;
 }

@@ -1,6 +1,7 @@
 import 'package:cherrystreet/common/customProgressBar.dart';
 import 'package:cherrystreet/constants/colors.dart';
 import 'package:cherrystreet/constants/fonts.dart';
+import 'package:cherrystreet/constants/size.dart';
 import 'package:flutter/material.dart';
 
 class PlanningCard extends StatelessWidget {
@@ -40,7 +41,10 @@ class PlanningCard extends StatelessWidget {
                   children: [
                     Text(
                       "Play Zone",
-                      style: poppinsSemiBold(size: 14, color: AppColors.primaryClr),
+                      style: poppinsBold(
+                        size: 16,
+                        color: AppColors.primaryClr,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Row(
@@ -112,9 +116,86 @@ class PlanningCard extends StatelessWidget {
                   children: [
                     Text(
                       "Goal Planning",
-                      style: poppinsSemiBold(
-                        size: 14,
+                      style: poppinsBold(
+                        size: 16,
                         color: AppColors.primaryClr,
+                      ),
+                    ),
+                    Container(
+                      height: getScreenHeight(context) / 3.9,
+                      width: getScreenWidth(context),
+                      margin: const EdgeInsets.symmetric(vertical: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                const CircleAvatar(
+                                  backgroundColor: AppColors.white,
+                                  child: Icon(Icons.monetization_on_outlined),
+                                ),
+                                const SizedBox(width: 14),
+                                Text(
+                                  "Living Expenses",
+                                  style: poppinsBold(),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "2040-2044",
+                                    style: poppinsMedium(size: 14),
+                                  ),
+                                  Text(
+                                    "\$72,420/yr",
+                                    style: poppinsSemiBold(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "2045-2067",
+                                    style: poppinsMedium(size: 14),
+                                  ),
+                                  Text(
+                                    "\$151,486/yr",
+                                    style: poppinsSemiBold(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "2068-2072",
+                                    style: poppinsMedium(size: 14),
+                                  ),
+                                  Text(
+                                    "\$121,389/yr",
+                                    style: poppinsSemiBold(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
