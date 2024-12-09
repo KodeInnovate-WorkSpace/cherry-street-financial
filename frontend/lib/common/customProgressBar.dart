@@ -19,7 +19,7 @@ class CustomProgressBar extends StatelessWidget {
               alignment: Alignment.centerLeft,
               widthFactor: 1, 
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.horizontal(
 
@@ -35,7 +35,7 @@ class CustomProgressBar extends StatelessWidget {
               alignment: Alignment.centerLeft,
               widthFactor: 0.85, 
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.green,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
